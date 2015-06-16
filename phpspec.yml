@@ -1,0 +1,5 @@
+suites:
+    main:
+        namespace: codeCommerce
+        psr4_prefix: codeCommerce
+        src_path: app
