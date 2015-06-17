@@ -20,3 +20,7 @@ Route::get('admin/categories', 'AdminCategoriesController@index');
 
 Route::get('admin/products', 'AdminProductsController@index');
 
+Route::get('home', [
+    'as' => 'home',
+    'uses' => 'HomeController@index'
+]);
