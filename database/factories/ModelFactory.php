@@ -11,7 +11,7 @@
 |
 */
 
-$factory->define(codeCommerce\User::class, function ($faker) {
+$factory->define(CodeCommerce\User::class, function ($faker) {
     return [
         'name' => $faker->name,
         'email' => $faker->email,

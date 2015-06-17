@@ -28,7 +28,7 @@ return [
     |
     */
 
-    'model' => codeCommerce\User::class,
+    'model' => CodeCommerce\User::class,
 
     /*
     |--------------------------------------------------------------------------
