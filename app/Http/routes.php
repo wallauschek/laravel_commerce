@@ -15,10 +15,65 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::pattern('id','[0-9]+');
 
-Route::get('admin/categories', 'AdminCategoriesController@index');
 
-Route::get('admin/products', 'AdminProductsController@index');
+Route::group(['prefix'=>'admin'],function(){
+
+
+//    Route::resource('categories', 'AdminCategoriesController');
+//    Route::resource('products', 'AdminProductsController');
+
+
+
+    Route::group(['prefix'=>'categories'], function(){
+
+        Route::get('/', ['as'=>'categoriesList', 'uses' => 'AdminCategoriesController@index']);
+
+        Route::get('create', ['as'=>'categoryCreate', 'uses' =>'AdminCategoriesController@index']);
+
+        Route::post('/', ['as'=>'categoryPost', 'uses' =>'AdminCategoriesController@index']);
+
+        Route::group(['prefix'=>'{id}'],function($id){
+
+            Route::get('/', ['as'=>'categoryShow', 'uses' =>'AdminCategoriesController@index']);
+
+            Route::get('edit', ['as'=>'categoryEdit', 'uses' =>'AdminCategoriesController@index']);
+
+            Route::put('/',  ['as'=>'categoryUpdate', 'uses' =>'AdminCategoriesController@index']);
+
+            Route::delete('/',  ['as'=>'categoryDelete', 'uses' =>'AdminCategoriesController@index']);
+
+
+        });
+
+    });
+
+    Route::group(['prefix'=>'products'], function(){
+
+        Route::get('/', ['as'=>'productsList', 'uses' =>'AdminProductsController@index']);
+
+        Route::get('create', ['as'=>'productCreate', 'uses' =>'AdminProductsController@index']);
+
+        Route::post('/', ['as'=>'productPost', 'uses' =>'AdminProductsController@index']);
+
+        Route::group(['prefix'=>'{id}'],function($id){
+
+            Route::get('/', ['as'=>'productShow', 'uses' =>'AdminProductsController@index']);
+
+            Route::get('edit', ['as'=>'productEdit', 'uses' =>'AdminProductsController@index']);
+
+            Route::put('/', ['as'=>'productUpdate', 'uses' =>'AdminProductsController@index']);
+
+            Route::delete('/', ['as'=>'productDelete', 'uses' =>'AdminProductsController@index']);
+
+
+        });
+
+    });
+
+});
+
 
 Route::get('home', [
     'as' => 'home',
