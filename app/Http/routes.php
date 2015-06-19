@@ -18,36 +18,54 @@ Route::get('/', function () {
 Route::pattern('id','[0-9]+');
 
 
-Route::group(['prefix'=>'admin'],function(){
+Route::group(['prefix'=>'categories'], function(){
 
+    Route::get('/', ['as'=>'categoriesList', 'uses' => 'CategoriesController@index']);
 
-//    Route::resource('categories', 'AdminCategoriesController');
-//    Route::resource('products', 'AdminProductsController');
+    Route::get('create', ['as'=>'categoryCreate', 'uses' =>'CategoriesController@create']);
 
+    Route::post('/', ['as'=>'categoryPost', 'uses' =>'CategoriesController@store']);
 
+    Route::group(['prefix'=>'{id}'],function($id){
 
-    Route::group(['prefix'=>'categories'], function(){
+        Route::get('/', ['as'=>'categoryShow', 'uses' =>'AdminCategoriesController@index']);
 
-        Route::get('/', ['as'=>'categoriesList', 'uses' => 'AdminCategoriesController@index']);
+        Route::get('edit', ['as'=>'categoryEdit', 'uses' =>'AdminCategoriesController@index']);
 
-        Route::get('create', ['as'=>'categoryCreate', 'uses' =>'AdminCategoriesController@index']);
+        Route::put('/',  ['as'=>'categoryUpdate', 'uses' =>'AdminCategoriesController@index']);
 
-        Route::post('/', ['as'=>'categoryPost', 'uses' =>'AdminCategoriesController@index']);
+        Route::delete('/',  ['as'=>'categoryDelete', 'uses' =>'AdminCategoriesController@index']);
 
-        Route::group(['prefix'=>'{id}'],function($id){
-
-            Route::get('/', ['as'=>'categoryShow', 'uses' =>'AdminCategoriesController@index']);
-
-            Route::get('edit', ['as'=>'categoryEdit', 'uses' =>'AdminCategoriesController@index']);
-
-            Route::put('/',  ['as'=>'categoryUpdate', 'uses' =>'AdminCategoriesController@index']);
-
-            Route::delete('/',  ['as'=>'categoryDelete', 'uses' =>'AdminCategoriesController@index']);
-
-
-        });
 
     });
+
+});
+
+
+Route::group(['prefix'=>'admin'],function(){
+
+    // Route::group(['prefix'=>'categories'], function(){
+
+    //     Route::get('/', ['as'=>'categoriesList', 'uses' => 'CategoriesController@index']);
+
+    //     Route::get('create', ['as'=>'categoryCreate', 'uses' =>'AdminCategoriesController@index']);
+
+    //     Route::post('/', ['as'=>'categoryPost', 'uses' =>'AdminCategoriesController@index']);
+
+    //     Route::group(['prefix'=>'{id}'],function($id){
+
+    //         Route::get('/', ['as'=>'categoryShow', 'uses' =>'AdminCategoriesController@index']);
+
+    //         Route::get('edit', ['as'=>'categoryEdit', 'uses' =>'AdminCategoriesController@index']);
+
+    //         Route::put('/',  ['as'=>'categoryUpdate', 'uses' =>'AdminCategoriesController@index']);
+
+    //         Route::delete('/',  ['as'=>'categoryDelete', 'uses' =>'AdminCategoriesController@index']);
+
+
+    //     });
+
+    // });
 
     Route::group(['prefix'=>'products'], function(){
 
