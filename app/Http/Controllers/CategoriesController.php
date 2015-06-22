@@ -41,7 +41,6 @@ class CategoriesController extends Controller
         $category = $this->categoryModel->fill($input);
         $category -> save();
 
-        return redirect('categories');
-    	
+        return redirect('categories') ;	
     }
 }
