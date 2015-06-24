@@ -3,7 +3,7 @@
 @section('content')
 	<div class="container">
 		<div class="row">
-			<h1>Create category</h1>
+			<h1>Create product</h1>
 
 			@if ( $errors->any() )
 				<ul class="alert">
@@ -13,7 +13,7 @@
 				</ul>
 			@endif
 			
-			{!! Form::open(['route'=>'categories.store']) !!}
+			{!! Form::open(['route'=>'products.store']) !!}
 			
 				<div class="form-group">
 					{!! Form::label('name','Name:') !!}
@@ -26,7 +26,22 @@
 				</div>
 
 				<div class="form-group">
-					{!! Form::submit('Add category',['class'=>'btn btn-primary form-control']) !!}
+					{!! Form::label('price','Price:') !!}
+					{!! Form::text('price', null,['class'=>'form-control']) !!}
+				</div>
+
+				<div class="form-group">
+					{!! Form::label('featured','Featured:') !!}
+					{!! Form::checkbox('featured', null,['class'=>'form-control']) !!}
+				</div>
+
+				<div class="form-group">
+					{!! Form::label('recommend','Recommend:') !!}
+					{!! Form::checkbox('recommend', null,['class'=>'form-control']) !!}
+				</div>
+
+				<div class="form-group">
+					{!! Form::submit('Add product',['class'=>'btn btn-primary form-control']) !!}
 				</div>
 				
 

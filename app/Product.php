@@ -1,10 +1,11 @@
-<?php
+<?php namespace codeCommerce {
 
-namespace CodeCommerce;
+    use Illuminate\Database\Eloquent\Model;
 
-use Illuminate\Database\Eloquent\Model;
+    class Product extends Model
+    {
 
-class Product extends Model
-{
-    //
+        protected $fillable = ['name','description','price','featured','recommend'];
+
+    }
 }
