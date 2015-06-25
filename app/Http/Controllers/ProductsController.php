@@ -53,6 +53,12 @@ class ProductsController extends Controller
 
     public function update(Requests\ProductRequest $request, $id){
 
+        if (!isset($request->featured)) {
+               $this->ProductModel->find($id)->update(['featured'=>0]);
+        }
+        if (!isset($request->recommend)) {
+               $this->ProductModel->find($id)->update(['recommend'=>0]);
+        }
         $this->ProductModel->find($id)->update($request->all());
 
         return redirect()->route('products') ;    

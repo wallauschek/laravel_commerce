@@ -31,12 +31,20 @@
 				</div>
 
 				<div class="form-group">
-					{!! Form::checkbox('featured', $product->featured, ['class'=>'form-control']) !!}
+				@if ($product->featured==1)
+					{!! Form::checkbox('featured', 1, true) !!}
+				@else 
+					{!! Form::checkbox('featured', 1, false) !!}
+				@endif
 					{!! Form::label('featured',' Featured') !!}
 				</div>
 
 				<div class="form-group">
-					{!! Form::checkbox('recommend', $product->recommend, ['class'=>'form-control']) !!}
+					@if ($product->recommend==1)
+					{!! Form::checkbox('recommend', 1, true) !!}
+				@else 
+					{!! Form::checkbox('recommend', 1, false) !!}
+				@endif
 					{!! Form::label('recommend',' Recommend') !!}
 				</div>
 
