@@ -15,48 +15,50 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::pattern('id','[0-9]+');
+Route::group(['prefix'=>'admin', 'where'=>['id'=>'[0-9]+']], function(){
+
+    Route::group(['prefix'=>'categories'], function(){
+
+        Route::get('/', ['as'=>'categories', 'uses' => 'CategoriesController@index']);
+
+        Route::get('create', ['as'=>'categories.create', 'uses' =>'CategoriesController@create']);
+
+        Route::post('/', ['as'=>'categories.store', 'uses' =>'CategoriesController@store']);
+
+        Route::group(['prefix'=>'{id}'],function($id){
+
+            Route::get('edit', ['as'=>'categories.edit', 'uses' =>'CategoriesController@edit']);
+
+            Route::put('/update',  ['as'=>'categories.update', 'uses' =>'CategoriesController@update']);
+
+            Route::get('/destroy',  ['as'=>'categories.destroy', 'uses' =>'CategoriesController@destroy']);
 
 
-Route::group(['prefix'=>'categories'], function(){
+        });
 
-    Route::get('/', ['as'=>'categories', 'uses' => 'CategoriesController@index']);
+    });
 
-    Route::get('create', ['as'=>'categories.create', 'uses' =>'CategoriesController@create']);
+    Route::group(['prefix'=>'products'], function(){
 
-    Route::post('/', ['as'=>'categories.store', 'uses' =>'CategoriesController@store']);
+        Route::get('/', ['as'=>'products', 'uses' => 'ProductsController@index']);
 
-    Route::group(['prefix'=>'{id}'],function($id){
+        Route::get('create', ['as'=>'products.create', 'uses' =>'ProductsController@create']);
 
-        Route::get('edit', ['as'=>'categories.edit', 'uses' =>'CategoriesController@edit']);
+        Route::post('/', ['as'=>'products.store', 'uses' =>'ProductsController@store']);
 
-        Route::put('/update',  ['as'=>'categories.update', 'uses' =>'CategoriesController@update']);
+        Route::group(['prefix'=>'{id}'],function($id){
 
-        Route::get('/destroy',  ['as'=>'categories.destroy', 'uses' =>'CategoriesController@destroy']);
+            Route::get('edit', ['as'=>'products.edit', 'uses' =>'ProductsController@edit']);
 
+            Route::put('/update',  ['as'=>'products.update', 'uses' =>'ProductsController@update']);
+
+            Route::get('/destroy',  ['as'=>'products.destroy', 'uses' =>'ProductsController@destroy']);
+
+
+        });
 
     });
 
-});
-
-Route::group(['prefix'=>'products'], function(){
-
-    Route::get('/', ['as'=>'products', 'uses' => 'ProductsController@index']);
-
-    Route::get('create', ['as'=>'products.create', 'uses' =>'ProductsController@create']);
-
-    Route::post('/', ['as'=>'products.store', 'uses' =>'ProductsController@store']);
-
-    Route::group(['prefix'=>'{id}'],function($id){
-
-        Route::get('edit', ['as'=>'products.edit', 'uses' =>'ProductsController@edit']);
-
-        Route::put('/update',  ['as'=>'products.update', 'uses' =>'ProductsController@update']);
-
-        Route::get('/destroy',  ['as'=>'products.destroy', 'uses' =>'ProductsController@destroy']);
-
-
-    });
 
 });
 
@@ -64,4 +66,4 @@ Route::group(['prefix'=>'products'], function(){
 Route::get('home', [
     'as' => 'home',
     'uses' => 'HomeController@index'
-]);
+    ]);

@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class EditProductsTable extends Migration
+class AddCategoryProducts extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,8 @@ class EditProductsTable extends Migration
     public function up()
     {
         Schema::table('products', function (Blueprint $table) {
-            $table->boolean('featured')->nullable();
-            $table->boolean('recommend')->nullable();
+            $table->integer('category_id')->unsigned()->default(1);
+            $table->foreign('category_id')->references('id')->on('categories');
         });
     }
 
@@ -26,8 +26,7 @@ class EditProductsTable extends Migration
     public function down()
     {
         Schema::table('products', function (Blueprint $table) {
-            $table->removeColumn('featured');
-            $table->removeColumn('recommend');
+            $table->removeColumn('category_id');
         });
     }
 }

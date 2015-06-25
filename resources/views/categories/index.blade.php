@@ -9,6 +9,7 @@
 			<a href="{{ route('categories.create')}}" class="btn btn-default">Nova categoria</a>
 			<br>
 			<br>
+			{!! $categories->render() !!}
 			<table class="table">
 				<tr>
 					<th>ID</th>
@@ -26,6 +27,7 @@
 				</tr>
 				@endforeach
 			</table>
+			{!! $categories->render() !!}
 		</div>
 	</div>
 @endsection

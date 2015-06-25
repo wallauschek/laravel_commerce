@@ -9,12 +9,14 @@
 			<a href="{{ route('products.create')}}" class="btn btn-default">Novo Produto</a>
 			<br>
 			<br>
+			{!! $products->render() !!}
 			<table class="table">
 				<tr>
 					<th>ID</th>
 					<th>Name</th>
 					<th>Description</th>
 					<th>Price</th>
+					<th>Category</th>
 					<th>Featured</th>
 					<th>Recommend</th>
 					<th>Action</th>
@@ -25,6 +27,7 @@
 					<td>{{ $product->name }}</td>
 					<td>{{ $product->description }}</td>
 					<td>{{ $product->price }}</td>
+					<td>{{ $product->category->name }}</td>
 					<td>@if($product->featured==1) yes @endif </td>
 					<td>@if($product->recommend==1) yes @endif</td>
 					<td><a href="{{ route('products.destroy', ['id'=>$product->id]) }}">deletar</a> | <a href="{{ route('products.edit', ['id'=>$product->id]) }}">Editar</a>
@@ -32,6 +35,8 @@
 				</tr>
 				@endforeach
 			</table>
+
+			{!! $products->render() !!}
 		</div>
 	</div>
 @endsection
