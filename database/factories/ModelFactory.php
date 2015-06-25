@@ -19,3 +19,20 @@ $factory->define(CodeCommerce\User::class, function ($faker) {
         'remember_token' => str_random(10),
     ];
 });
+
+$factory->define(CodeCommerce\Category::class, function ($faker) {
+    return [
+        'name' => $faker->word,
+        'description' => $faker->sentence,
+    ];
+});
+
+$factory->define(CodeCommerce\Product::class, function ($faker) {
+    return [
+        'name' => $faker->word,
+        'description' => $faker->sentence,
+        'price' => $faker->randomFloat(2, 0, 50),
+        'featured' => $faker->boolean(50),
+        'recommend' => $faker->boolean(50),
+    ];
+});
