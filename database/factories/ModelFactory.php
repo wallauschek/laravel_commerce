@@ -37,3 +37,9 @@ $factory->define(CodeCommerce\Product::class, function ($faker) {
         'category_id' => $faker->numberBetween(1,15),
     ];
 });
+$factory->define(CodeCommerce\ProductImage::class, function ($faker) {
+    return [
+        'product_id' => $faker->numberBetween(1,15),
+        'extension' => 'jpg',
+    ];
+});

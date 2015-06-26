@@ -30,7 +30,9 @@
 					<td>{{ $product->category->name }}</td>
 					<td>@if($product->featured==1) yes @endif </td>
 					<td>@if($product->recommend==1) yes @endif</td>
-					<td><a href="{{ route('products.destroy', ['id'=>$product->id]) }}">deletar</a> | <a href="{{ route('products.edit', ['id'=>$product->id]) }}">Editar</a>
+					<td><a href="{{ route('products.destroy', ['id'=>$product->id]) }}">deletar</a> |
+                        <a href="{{ route('products.images', ['id'=>$product->id]) }}">Images</a> |
+                        <a href="{{ route('products.edit', ['id'=>$product->id]) }}">Editar</a>
 					</td>
 				</tr>
 				@endforeach
