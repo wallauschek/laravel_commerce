@@ -75,6 +75,14 @@ class ProductsController extends Controller
 
     public function destroy($id){
 
+        $images = $this->ProductModel->find($id)->images;
+
+        foreach($images as $image){
+            if(file_exists(public_path('/uploads/').$image->id.'.'.$image->extension)){
+                Storage::disk('public_local')->delete($image->id.'.'.$image->extension);
+            }
+        };
+
         $this->ProductModel->find($id)->delete();
 
         return redirect()->route('products') ;    
