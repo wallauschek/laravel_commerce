@@ -29,7 +29,7 @@
 					<span class="icon-bar"></span>
 				</button>
 
-				
+
                 <a class="navbar-brand" href="{{ route('products') }}">Products</a>
                 <a class="navbar-brand" href="{{ route('categories') }}">Categories</a>
 			</div>

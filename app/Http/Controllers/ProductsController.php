@@ -2,6 +2,7 @@
 
 namespace CodeCommerce\Http\Controllers;
 
+use CodeCommerce\Tag;
 use Illuminate\Http\Request;
 
 use CodeCommerce\ProductImage;
@@ -48,7 +49,26 @@ class ProductsController extends Controller
         $product = $this->ProductModel->fill($input);
         $product -> save();
 
-        return redirect()->route('products') ;    
+        $tag = $request->tags;
+        $tags = explode(',',$tag);
+        $tagsCad = Tag::lists('name','id');
+        $tagsCad =  $tagsCad->toArray();
+        $sync = array();
+
+        foreach($tags as $tag){
+            if(!in_array($tag, $tagsCad)){
+                $t = new Tag();
+                $t->name = $tag;
+                $t->save();
+                array_push($sync, $t->getQueueableId());
+
+            }else{
+                array_push($sync, array_keys($tagsCad,$tag)[0]);
+            }
+        }
+        $product->tags()->attach($sync);
+
+        return redirect()->route('products') ;
     }
 
     public function edit($id, Category $category){
@@ -69,7 +89,26 @@ class ProductsController extends Controller
         }
         $this->ProductModel->find($id)->update($request->all());
 
-        return redirect()->route('products') ;    
+        $tag = $request->tags;
+        $tags = explode(',',$tag);
+        $tagsCad = Tag::lists('name','id');
+        $tagsCad =  $tagsCad->toArray();
+        $sync = array();
+
+        foreach($tags as $tag){
+            if(!in_array($tag, $tagsCad)){
+                $t = new Tag();
+                $t->name = $tag;
+                $t->save();
+                array_push($sync, $t->getQueueableId());
+
+            }else{
+                array_push($sync, array_keys($tagsCad,$tag)[0]);
+            }
+        }
+        $this->ProductModel->find($id)->tags()->sync($sync);
+
+        return redirect()->route('products') ;
 
     }
 
@@ -125,4 +164,6 @@ class ProductsController extends Controller
 
         return redirect()->route('products.images',['id'=>$product->id]);
     }
+
+
 }
