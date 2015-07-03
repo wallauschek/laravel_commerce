@@ -91,8 +91,7 @@ class ProductsController extends Controller
 
         $tag = $request->tags;
         $tags = explode(',',$tag);
-        $tagsCad = Tag::lists('name','id');
-        $tagsCad =  $tagsCad->toArray();
+        $tagsCad = Tag::lists('name','id')->toArray();
         $sync = array();
 
         foreach($tags as $tag){

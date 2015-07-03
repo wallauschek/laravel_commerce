@@ -11,9 +11,9 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+
+Route::get('/', ['as'=>'store.index', 'uses' => 'StoreController@index']);
+Route::get('category/{id}', ['as'=>'store.products_category', 'uses' => 'StoreController@productsCategory']);
 
 Route::group(['prefix'=>'admin', 'where'=>['id'=>'[0-9]+']], function(){
 

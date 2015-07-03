@@ -26,5 +26,14 @@
             $tags = $this->tags->lists('name')->toArray();
             return implode(',', $tags);
         }
+
+        public function scopeFeatured($query){
+            return $query->where('featured','=',1);
+        }
+
+        public function scopeRecommend($query){
+            return $query->where('recommend','=',1);
+        }
+
     }
 }
