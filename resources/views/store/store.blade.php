@@ -8,13 +8,7 @@
     <meta name="author" content="">
     <title>Home | E-Shop</title>
 
-
-    {!! Html::style('assets/css/bootstrap.min.css') !!}
-    {!! Html::style('assets/css/font-awesome.min.css') !!}
-    {!! Html::style('assets/css/prettyPhoto.css') !!}
-    {!! Html::style('assets/css/animate.css') !!}
-    {!! Html::style('assets/css/main.css') !!}
-    {!! Html::style('assets/css/responsive.css') !!}
+    <link rel="stylesheet" href="{{ elixir('assets/css/all.css') }}"/>
 
 
 </head><!--/head-->
@@ -147,11 +141,7 @@
 
 
 
-{!! Html::script('assets/js/jquery.js') !!}
-{!! Html::script('assets/js/bootstrap.min.js') !!}
-{!! Html::script('assets/js/jquery.scrollUp.min.js') !!}
-{!! Html::script('assets/js/jquery.prettyPhoto.js') !!}
-{!! Html::script('assets/js/main.js') !!}
+<script src="{{ elixir('assets/js/all.js') }}"></script>
 
 </body>
 </html>
