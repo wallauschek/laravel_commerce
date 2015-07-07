@@ -35,5 +35,9 @@
             return $query->where('recommend','=',1);
         }
 
+        public function scopeOfCategory($query, $type){
+            return $query->where('category_id','=',$type);
+        }
+
     }
 }
