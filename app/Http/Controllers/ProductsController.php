@@ -97,7 +97,7 @@ class ProductsController extends Controller
         foreach($tags as $tag){
             if(!in_array($tag, $tagsCad)){
                 $t = new Tag();
-                $t->name = $tag;
+                $t->name = trim($tag);
                 $t->save();
                 array_push($sync, $t->getQueueableId());
 

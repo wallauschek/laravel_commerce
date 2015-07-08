@@ -6,7 +6,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Laravel</title>
  
-	{!! Html::style('assets/css/bootstrap.css') !!}
+	{!! Html::style('assets/css/bootstrap.min.css') !!}
  
 	<!-- Fonts -->
 	<link href='//fonts.googleapis.com/css?family=Roboto:400,300' rel='stylesheet' type='text/css'>
