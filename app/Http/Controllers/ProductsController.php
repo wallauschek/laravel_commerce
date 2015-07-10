@@ -164,5 +164,4 @@ class ProductsController extends Controller
         return redirect()->route('products.images',['id'=>$product->id]);
     }
 
-
 }
