@@ -21,8 +21,9 @@ Route::get('cart/add/{id}', ['as'=>'cart.add', 'uses' => 'CartController@add']);
 Route::get('cart/destroy/{id}', ['as'=>'cart.destroy', 'uses' => 'CartController@destroy']);
 Route::get('cart/increment/{id}', ['as'=>'cart.increment', 'uses' => 'CartController@incrementQtd']);
 Route::get('cart/decrement/{id}', ['as'=>'cart.decrement', 'uses' => 'CartController@decrementQtd']);
+Route::get('checkout/placeOrder', ['middleware'=>'placeOrder', 'as'=>'checkout.place', 'uses' => 'CheckoutController@place']);
 
-Route::group(['prefix'=>'admin', 'where'=>['id'=>'[0-9]+']], function(){
+Route::group(['prefix'=>'admin', 'middleware'=>'auth.admin' , 'where'=>['id'=>'[0-9]+']], function(){
 
     Route::group(['prefix'=>'categories'], function(){
 
@@ -82,3 +83,8 @@ Route::get('home', [
     'as' => 'home',
     'uses' => 'HomeController@index'
     ]);
+
+Route::controllers([
+   'auth'=>'Auth\AuthController',
+    'password'=>'Auth\PasswordController'
+]);

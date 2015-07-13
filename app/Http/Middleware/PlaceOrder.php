@@ -4,8 +4,10 @@ namespace CodeCommerce\Http\Middleware;
 
 use Closure;
 use Illuminate\Contracts\Auth\Guard;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 
-class Authenticate
+class PlaceOrder
 {
     /**
      * The Guard implementation.
@@ -24,25 +26,18 @@ class Authenticate
     {
         $this->auth = $auth;
     }
-
-    /**
-     * Handle an incoming request.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \Closure  $next
-     * @return mixed
-     */
     public function handle($request, Closure $next)
     {
+
+
         if ($this->auth->guest()) {
-            if ($request->ajax()) {
-                return response('Unauthorized.', 401);
-            } else {
-                return redirect()->guest('auth/login');
+            return redirect()->guest('auth/login');
+        }else{
+            if(!Session::has('cart')){
+                return redirect('cart');
             }
         }
 
         return $next($request);
     }
 }
-
