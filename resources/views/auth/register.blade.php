@@ -1,4 +1,4 @@
-@extends('app')
+@extends('store.store')
 
 @section('content')
 <div class="container-fluid">
@@ -48,6 +48,48 @@
 								<input type="password" class="form-control" name="password_confirmation">
 							</div>
 						</div>
+
+                        <div class="form-group">
+                            <label class="col-md-4 control-label">CEP</label>
+                            <div class="col-md-6">
+                                <input type="text" class="form-control" name="cep" value="{{ old('cep') }}">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-md-4 control-label">Logradouro</label>
+                            <div class="col-md-6">
+                                <input type="text" class="form-control" name="logradouro" value="{{ old('logradouro') }}">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-md-4 control-label">Número</label>
+                            <div class="col-md-6">
+                                <input type="text" class="form-control" name="numero" value="{{ old('numero') }}">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-md-4 control-label">Complemento</label>
+                            <div class="col-md-6">
+                                <input type="text" class="form-control" name="complemento" value="{{ old('complemento') }}">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-md-4 control-label">Cidade</label>
+                            <div class="col-md-6">
+                                <input type="text" class="form-control" name="cidade" value="{{ old('cidade') }}">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-md-4 control-label">Estado</label>
+                            <div class="col-md-6">
+                                <input type="text" class="form-control" name="estado" value="{{ old('estado') }}">
+                            </div>
+                        </div>
 
 						<div class="form-group">
 							<div class="col-md-6 col-md-offset-4">

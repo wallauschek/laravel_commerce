@@ -1,4 +1,4 @@
-@extends('app')
+@extends('store.store')
 
 @section('content')
 <div class="container-fluid">
@@ -51,7 +51,10 @@
 									Login
 								</button>
 
-								<a href="/password/email">Forgot Your Password?</a>
+								<a href="/password/email">Esqueceu sua senha?</a><br/><br/><br/>
+								<a href="/auth/register" class="btn btn-primary">Criar novo usuário</a>
+
+
 							</div>
 						</div>
 					</form>

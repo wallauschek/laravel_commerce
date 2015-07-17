@@ -13,6 +13,7 @@
 
 
 Route::get('/', ['as'=>'store.index', 'uses' => 'StoreController@index']);
+Route::get('/home', ['as'=>'home', 'uses' => 'StoreController@index']);
 Route::get('category/{id}', ['as'=>'store.products_category', 'uses' => 'StoreController@productsCategory']);
 Route::get('tag/{id}', ['as'=>'store.products_tag', 'uses' => 'StoreController@productsTag']);
 Route::get('product/{id}', ['as'=>'store.product', 'uses' => 'StoreController@product']);
@@ -21,7 +22,11 @@ Route::get('cart/add/{id}', ['as'=>'cart.add', 'uses' => 'CartController@add']);
 Route::get('cart/destroy/{id}', ['as'=>'cart.destroy', 'uses' => 'CartController@destroy']);
 Route::get('cart/increment/{id}', ['as'=>'cart.increment', 'uses' => 'CartController@incrementQtd']);
 Route::get('cart/decrement/{id}', ['as'=>'cart.decrement', 'uses' => 'CartController@decrementQtd']);
-Route::get('checkout/placeOrder', ['middleware'=>'placeOrder', 'as'=>'checkout.place', 'uses' => 'CheckoutController@place']);
+
+Route::group(['middleware'=>'placeOrder'],function(){
+    Route::get('checkout/placeOrder', ['as'=>'checkout.place', 'uses' => 'CheckoutController@place']);
+    Route::get('account/orders', ['as'=>'account.orders', 'uses' => 'AccountController@orders']);
+});
 
 Route::group(['prefix'=>'admin', 'middleware'=>'auth.admin' , 'where'=>['id'=>'[0-9]+']], function(){
 
@@ -75,16 +80,15 @@ Route::group(['prefix'=>'admin', 'middleware'=>'auth.admin' , 'where'=>['id'=>'[
 
     });
 
+    Route:get('orders',['as'=>'orders', 'uses'=>'OrdersController@index']);
+
 
 });
-
-
-Route::get('home', [
-    'as' => 'home',
-    'uses' => 'HomeController@index'
-    ]);
 
 Route::controllers([
    'auth'=>'Auth\AuthController',
     'password'=>'Auth\PasswordController'
 ]);
+
+
+Route::get('altera-status-order', ['middleware'=>'auth.admin', 'uses'=>'OrdersController@status']);

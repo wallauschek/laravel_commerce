@@ -30,6 +30,7 @@
             </button>
             <a class="navbar-brand" href="{{ route('products') }}">Products</a>
             <a class="navbar-brand" href="{{ route('categories') }}">Categories</a>
+            <a class="navbar-brand" href="{{ route('orders') }}">Orders</a>
         </div>
 
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -59,5 +60,6 @@
 <!-- Scripts -->
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 {!! Html::script('assets/js/bootstrap.min.js') !!}
+@yield('js')
 </body>
 </html>
