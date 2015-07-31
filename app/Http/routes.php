@@ -28,6 +28,9 @@ Route::group(['middleware'=>'placeOrder'],function(){
     Route::get('account/orders', ['as'=>'account.orders', 'uses' => 'AccountController@orders']);
 });
 
+Route::get('retornopagamento/{cod}', 'CheckoutController@test');
+
+
 Route::group(['prefix'=>'admin', 'middleware'=>'auth.admin' , 'where'=>['id'=>'[0-9]+']], function(){
 
     Route::group(['prefix'=>'categories'], function(){
